@@ -65,7 +65,7 @@ def year_month_day(date, day_begins):
 
     year = str(newdate.year)
     month = '{0:02d}'.format(newdate.month)
-    month += '-' + months[month]
+#    month += '-' + months[month]
     day = '{0:02d}'.format(newdate.day)
 
     return year, month, day
