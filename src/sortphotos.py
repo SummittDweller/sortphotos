@@ -30,7 +30,11 @@ def parse_date_exif(date_string):
     YYYY:MM:DD HH:MM:SS
     """
 
-    date_array, time_array, time_zone_offset = str(date_string).split()
+    if 'T' in str(date_string):
+        date_array, time_array = str(date_string).split('T')
+    else:
+        date_array, time_array, time_zone_offset = str(date_string).split()
+
     if ':' in date_array:
         date_entries = date_array.split(':')
     else:
