@@ -32,8 +32,10 @@ def parse_date_exif(date_string):
 
     if 'T' in str(date_string):
         date_array, time_array = str(date_string).split('T')
-    else:
+    elif date_string.field_length > 20:
         date_array, time_array, time_zone_offset = str(date_string).split()
+    else:
+        date_array, time_array = str(date_string).split()
 
     if ':' in date_array:
         date_entries = date_array.split(':')
@@ -278,7 +280,7 @@ if __name__ == '__main__':
     parser.add_argument('--keep-duplicates', action='store_true',
                         help='If file is a duplicate keep it anyway (after renmaing).')
     parser.add_argument('--extensions', type=str, nargs='+',
-                        default=['jpg', 'jpeg', 'tiff', 'avi', 'mov', 'mp4'],
+                        default=['jpg', 'jpeg', 'tiff', 'tif'],
                         help='file types to sort')
     parser.add_argument('--ignore-exif', action='store_true',
                         help='always use file time stamp even if EXIF data exists')
