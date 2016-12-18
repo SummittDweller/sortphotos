@@ -42,7 +42,12 @@ def parse_date_exif(date_string):
     else:
         date_entries = date_array.split('-')
 
-    time_entries = time_array.split(':')
+    if '-' in time_array:
+        time_string, zone = str(time_array).split('-')
+    else:
+        time_string = time_array
+
+    time_entries = time_string.split(':')
     year = int(date_entries[0])
     month = int(date_entries[1])
     day = int(date_entries[2])
