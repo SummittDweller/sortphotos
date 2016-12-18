@@ -183,6 +183,7 @@ def sortPhotos(src_dir, dest_dir, extensions, sort_type, move_files, removeDupli
         
         if verbose:
             sys.stdout.write(src_file)
+            sys.stdout.write('                       ')
             sys.stdout.flush()
 
         if ignore_exif:
