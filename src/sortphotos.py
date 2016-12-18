@@ -30,11 +30,12 @@ def parse_date_exif(date_string):
     YYYY:MM:DD HH:MM:SS
     """
 
-    dateTime_array = str(date_string.split())
-    pprint(dateTime_array)
+    date_array, time_array, time_zone_offset = str(date_string).split()
+    if ':' in date_array:
+        date_entries = date_array.split(':')
+    else:
+        date_entries = date_array.split('-')
 
-    date_array, time_array = str(date_string).split()
-    date_entries = date_array.split(':')
     time_entries = time_array.split(':')
     year = int(date_entries[0])
     month = int(date_entries[1])
