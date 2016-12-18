@@ -32,7 +32,7 @@ def parse_date_exif(date_string):
 
     if 'T' in str(date_string):
         date_array, time_array = str(date_string).split('T')
-    elif date_string.field_length > 20:
+    elif date_string.field_length > 22:
         date_array, time_array, time_zone_offset = str(date_string).split()
     else:
         date_array, time_array = str(date_string).split()
