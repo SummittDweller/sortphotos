@@ -15,6 +15,7 @@ import fnmatch
 import subprocess
 import filecmp
 from datetime import datetime, timedelta
+from pprint import pprint
 
 import exifread
 
@@ -28,6 +29,9 @@ def parse_date_exif(date_string):
     extract date info from EXIF data
     YYYY:MM:DD HH:MM:SS
     """
+
+    dateTime_array = str(date_string.split())
+    pprint(dateTime_array)
 
     date_array, time_array = str(date_string).split()
     date_entries = date_array.split(':')
