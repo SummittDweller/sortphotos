@@ -121,7 +121,7 @@ SortType = enum('Year', 'YearMonth', 'YearMonthDay')
 # --------- main script -----------------
 
 def sortPhotos(src_dir, dest_dir, extensions, sort_type, move_files, removeDuplicates,
-               ignore_exif, day_begins):
+               ignore_exif, day_begins, verbose):
 
 
     # some error checking
@@ -169,6 +169,10 @@ def sortPhotos(src_dir, dest_dir, extensions, sort_type, move_files, removeDupli
         sys.stdout.flush()
 
         idx += 1
+        
+        if verbose:
+            sys.stdout.write(src_file)
+            sys.stdout.flush()
 
         if ignore_exif:
             date = parse_date_tstamp(src_file)
@@ -258,6 +262,7 @@ if __name__ == '__main__':
                                      description='Sort files (primarily photos) into folders by date\nusing EXIF data if possible and file creation date if not')
     parser.add_argument('src_dir', type=str, help='source directory (searched recursively)')
     parser.add_argument('dest_dir', type=str, help='destination directory')
+    parser.add_argument('-v', '--verbose', action='store_true', help='provide verbose (debug) output')
     parser.add_argument('-m', '--move', action='store_true', help='move files instead of copy')
     parser.add_argument('-s', '--sort', type=str, choices=['y', 'm', 'd'], default='m',
                         help='choose destination folder structure\n\ty: sort by year\n\tm: sort by year then month\n\td: sort by year then month then day')
@@ -284,7 +289,7 @@ if __name__ == '__main__':
         sort_type = SortType.YearMonthDay
 
     sortPhotos(args.src_dir, args.dest_dir, args.extensions, sort_type,
-              args.move, not args.keep_duplicates, args.ignore_exif, args.day_begins)
+              args.move, not args.keep_duplicates, args.ignore_exif, args.day_begins, args.verbose)
 
 
 
